@@ -1,0 +1,204 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Weekly Brand Recap Proposal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: the same one-column, two-page proposal as the Herald one, in CMG's look: mint-white page, bold Helvetica-style headings, Montserrat text, CMG blue dots. Single light look, like criticalmassgroup.com. */
+:root {
+  --page: #F7F9F8;
+  --ink: #242325;
+  --head: #121214;
+  --secondary: #4A4B50;
+  --line: #DCE3E1;
+  --blue: #4FACFE;
+  --blue-ink: #1569B8;
+  --box: #E6F2FD;
+  --navy: #173753;
+  --font-head: "Helvetica Neue", Helvetica, Arimo, Arial, sans-serif;
+  --font-body: Montserrat, Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { background: var(--page); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
+body { margin: 0; background: var(--page); }
+main { max-width: 1056px; margin: 0 auto; padding-block: 30px 42px; padding-left: max(48px, env(safe-area-inset-left, 0px)); padding-right: max(48px, env(safe-area-inset-right, 0px)); }
+a { color: var(--blue-ink); }
+a:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+
+header { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: 30px; }
+.brand { display: flex; align-items: baseline; gap: 18px; }
+.brand-name { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-head); font-size: 26px; font-weight: 700; letter-spacing: -1px; line-height: 1; color: var(--head); }
+.brand-name::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.25); }
+.proposal { font-size: 12px; color: var(--secondary); }
+.cta { font-family: var(--font-head); font-weight: 700; font-size: 15px; text-decoration: none; color: var(--navy); background: var(--blue); border-radius: 40px; padding: 9px 18px; white-space: nowrap; }
+
+h1, h2, h3 { font-family: var(--font-head); color: var(--head); text-wrap: balance; }
+h1 { font-size: 44px; line-height: 1.1; font-weight: 700; letter-spacing: -1.3px; margin: 0 0 16px; }
+h2 { font-size: 23px; line-height: 1.25; font-weight: 700; letter-spacing: -0.5px; margin: 0 0 13px; }
+h3 { font-size: 15px; line-height: 1.4; font-weight: 700; margin: 0 0 6px; }
+p { margin: 0; }
+.context { font-size: 16px; line-height: 1.65; max-width: 860px; color: var(--secondary); }
+.intro .context + .context { margin-top: 12px; }
+.context strong { color: var(--ink); font-weight: 700; }
+
+section { margin-top: 32px; }
+.table-head { display: grid; grid-template-columns: 105px 1.08fr 1fr; gap: 28px; font-size: 12px; color: var(--secondary); padding: 0 0 11px; border-bottom: 1px solid var(--line); }
+.table-head span:nth-child(2) { padding-left: 20px; }
+.timeline { list-style: none; margin: 0; padding: 0; }
+.step { position: relative; display: grid; grid-template-columns: 105px 1.08fr 1fr; gap: 28px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.step::before { content: ""; position: absolute; width: 1px; left: 124px; top: 0; bottom: 0; background: var(--line); }
+.step:last-child::before { bottom: calc(100% - 27px); }
+.step::after { content: ""; position: absolute; left: 120px; top: 23px; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); }
+.time { font-family: var(--font-head); font-size: 14px; font-weight: 700; line-height: 1.45; color: var(--head); }
+.event { padding-left: 20px; min-width: 0; }
+.decision { min-width: 0; }
+.event p, .decision p { font-size: 14px; line-height: 1.55; }
+.event p { color: var(--secondary); }
+.decision .outcome { display: block; font-size: 14px; font-weight: 700; color: var(--blue-ink); margin-bottom: 4px; }
+.how .step { padding: 13px 0; }
+.how .step::after { top: 18px; }
+.how .step:last-child::before { bottom: calc(100% - 22px); }
+.how .decision p { color: var(--ink); }
+
+.reviews { margin: 0; padding: 0; list-style: none; }
+.reviews li { display: grid; grid-template-columns: 185px 1fr; gap: 27px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.6; }
+.reviews strong { font-weight: 700; color: var(--head); }
+.reviews p { color: var(--secondary); }
+
+.success { margin-top: 26px; background: var(--box); border-radius: 14px; padding: 19px 22px; font-size: 14px; line-height: 1.6; }
+.success h2 { font-size: 18px; letter-spacing: -0.3px; margin-bottom: 6px; }
+.measurement-note { margin-bottom: 8px; color: var(--secondary); }
+.success ul { margin: 0; padding-left: 18px; }
+.success li + li { margin-top: 4px; }
+
+@media (max-width: 720px) {
+  main { padding-block: 23px 30px; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  header { margin-bottom: 24px; gap: 14px; }
+  .brand { align-items: flex-start; gap: 8px; flex-direction: column; }
+  h1 { font-size: 34px; letter-spacing: -0.9px; }
+  .context { font-size: 15px; }
+  h2 { font-size: 21px; }
+  .table-head { display: none; }
+  .step { grid-template-columns: 66px 1fr; gap: 8px 19px; padding: 18px 0; }
+  .step::before { left: 73px; }
+  .step::after { left: 69px; }
+  .time { grid-row: 1 / 3; font-size: 12px; }
+  .event { padding-left: 10px; }
+  .decision { grid-column: 2; padding-left: 10px; }
+  .reviews li { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
+  .success { padding: 17px 18px; }
+}
+
+@media print {
+  @page { size: A4; margin: 12mm 14mm; }
+  html, body { background: #FFFFFF; }
+  html { font-size: 10.5pt; line-height: 1.45; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  main { max-width: none; padding: 0; }
+  header { margin-bottom: 12px; padding-bottom: 10px; }
+  .brand-name { font-size: 19pt; }
+  .proposal { font-size: 9pt; }
+  .cta { font-size: 9.5pt; padding: 5px 12px; }
+  h1 { font-size: 24pt; letter-spacing: -0.6px; margin-bottom: 11px; }
+  h2 { font-size: 15pt; margin-bottom: 8px; }
+  h3 { font-size: 10pt; }
+  .context { font-size: 10.5pt; line-height: 1.5; }
+  .intro .context + .context { margin-top: 8px; }
+  section { margin-top: 16px; }
+  .table-head { grid-template-columns: 70px 1.08fr 1fr; gap: 20px; font-size: 8.5pt; padding-bottom: 6px; }
+  .table-head span:nth-child(2) { padding-left: 16px; }
+  .step { grid-template-columns: 70px 1.08fr 1fr; gap: 20px; padding: 7px 0; break-inside: avoid; }
+  .how .step { padding: 5px 0; }
+  .step::before { left: 82px; }
+  .step::after, .how .step::after { left: 78px; top: 11px; }
+  .step:last-child::before, .how .step:last-child::before { bottom: calc(100% - 15px); }
+  .time { font-size: 9pt; }
+  .event { padding-left: 16px; }
+  .event p, .decision p { font-size: 9.5pt; line-height: 1.4; }
+  .decision .outcome { font-size: 9.5pt; margin-bottom: 2px; }
+  .reviews li { grid-template-columns: 120px 1fr; gap: 20px; padding: 6px 0; font-size: 9.5pt; line-height: 1.45; break-inside: avoid; }
+  .success { padding: 10px 14px; margin-top: 12px; font-size: 9.5pt; line-height: 1.45; break-inside: avoid; }
+  .success h2 { font-size: 12.5pt; }
+  .success li + li { margin-top: 2px; }
+  .questions { break-inside: avoid; }
+  h2 { break-after: avoid; }
+}
+</style>
+
+<main>
+  <header>
+    <div class="brand"><span class="brand-name">CMG Central</span><span class="proposal">Workflow proposal</span></div>
+    <a class="cta" href="https://claude.ai/artifact/KQomM7otRmAvfZ6pZHqxXw">Open the prototype ↗</a>
+  </header>
+
+  <h1>Weekly Brand Recap</h1>
+  <div class="intro">
+    <p class="context">Every week, CMG gets each brand’s sales data from SPINS and retailer data portals. Weekly Brand Recap turns that data into a short, checked update for each brand, inside CMG Central.</p>
+    <p class="context"><strong>Why build it:</strong> A brand update has to get three things right. Files from different sources need one format. Every number has to match its source. And because CMG holds many brands’ data in one place, each brand must see only its own. This workflow handles all three, so CMG’s team reviews a checked draft.</p>
+    <p class="context"><strong>Who it’s for:</strong> CMG’s own team first, the people who prepare and approve brand updates. Brand partners second: they get an update they can trust, in the CMG Brand Portal.</p>
+    <p class="context"><strong>Try it:</strong> <a href="https://claude.ai/artifact/KQomM7otRmAvfZ6pZHqxXw">Open the clickable prototype</a> (sample data). Fix the flagged Whole Foods number, approve the recap, then view it as Sample Brand and as another brand.</p>
+  </div>
+
+  <section class="how" aria-labelledby="how-title">
+    <h2 id="how-title">How it works</h2>
+    <div class="table-head" aria-hidden="true"><span>Step</span><span>What happens</span><span>What keeps it right</span></div>
+    <ol class="timeline">
+      <li class="step"><div class="time">Collect</div><div class="event"><p>Retailer portal and SPINS files come in by connector, MCP or upload.</p></div><div class="decision"><p>If a file is missing, the recap says which one. It never reuses old data.</p></div></li>
+      <li class="step"><div class="time">Map</div><div class="event"><p>Each file’s columns are matched to one CMG format. For example, “Dollars” and “Net Sales” both become Sales $.</p></div><div class="decision"><p>A new column name goes to Operations to map once. Nothing is guessed.</p></div></li>
+      <li class="step"><div class="time">Draft</div><div class="event"><p>The AI assistant writes each brand’s recap from that brand’s rows only.</p></div><div class="decision"><p>It never sees another brand’s data.</p></div></li>
+      <li class="step"><div class="time">Check</div><div class="event"><p>A separate step matches every number in the draft to its source row.</p></div><div class="decision"><p>A number that doesn’t match is flagged and blocks approval.</p></div></li>
+      <li class="step"><div class="time">Approve</div><div class="event"><p>The brand’s CMG team fixes anything flagged and approves.</p></div><div class="decision"><p>Every recap records who approved it, and when.</p></div></li>
+      <li class="step"><div class="time">Publish</div><div class="event"><p>The recap posts to the CMG Brand Portal.</p></div><div class="decision"><p>Each brand sees only its own approved recaps.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="rollout" aria-labelledby="plan-title">
+    <h2 id="plan-title">Rollout plan</h2>
+    <div class="table-head" aria-hidden="true"><span>Timing</span><span>What I’d do</span><span>When to move forward</span></div>
+    <ol class="timeline">
+      <li class="step">
+        <div class="time">Weeks 1–2</div>
+        <div class="event"><h3>Map today’s process</h3><p>Sit with Category Insights and Client Services. Time each step of how brand updates are made today, to set the baseline.</p></div>
+        <div class="decision"><span class="outcome">Agree the scope</span><p>The VP of Operations signs off the process map, the baseline time and the targets.</p></div>
+      </li>
+      <li class="step">
+        <div class="time">Weeks 3–4</div>
+        <div class="event"><h3>Build and test</h3><p>Set up the mappings, the AI assistant, the check and the access rules in CMG Central. Run every test on last month’s real files.</p></div>
+        <div class="decision"><span class="outcome">Ready for a pilot</span><p>Every test passes, including a planted wrong number that the check must catch.</p></div>
+      </li>
+      <li class="step">
+        <div class="time">Weeks 5–8</div>
+        <div class="event"><h3>Pilot with three brands</h3><p>Run it side by side with today’s process. Get feedback from each brand’s CMG team every week, and fix what comes up.</p></div>
+        <div class="decision"><span class="outcome">Ready to roll out</span><p>The numbers match today’s process, and the teams prefer the new way.</p></div>
+      </li>
+      <li class="step">
+        <div class="time">Weeks 9–12</div>
+        <div class="event"><h3>Train and roll out</h3><p>A 15-minute training on real drafts: open, fix one flag, approve. Add brands in waves, with a one-page guide for brand partners.</p></div>
+        <div class="decision"><span class="outcome">Agree what’s next</span><p>8 in 10 weekly recaps run through it. Then pick the next workflow using the numbers below.</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="questions" aria-labelledby="questions-title">
+    <h2 id="questions-title">Questions I’d ask in week one</h2>
+    <ul class="reviews">
+      <li><strong>Source of truth</strong><p>When SPINS and a retailer portal disagree, which number goes in the recap?</p></li>
+      <li><strong>Access</strong><p>Do brand partners use CMG Central directly, or only the Brand Portal? That decides where the access rules live.</p></li>
+      <li><strong>Starting point</strong><p>Who prepares brand updates today, and which one takes longest? The pilot should start there.</p></li>
+    </ul>
+  </section>
+
+  <section class="success" aria-labelledby="track-title">
+    <h2 id="track-title">What I’d report to the VP of Operations</h2>
+    <p class="measurement-note">Set the baseline in weeks 1–2, then report every month: what shipped, what broke, what’s next.</p>
+    <ul>
+      <li><strong>Usage:</strong> The share of weekly recaps that run through the workflow.</li>
+      <li><strong>Time saved:</strong> Minutes per recap, compared with the baseline.</li>
+      <li><strong>Data accuracy:</strong> The share of numbers that pass the check the first time.</li>
+      <li><strong>Failure rate:</strong> Runs that needed a manual fix, and why.</li>
+      <li><strong>Feedback:</strong> What CMG teams and brand partners say.</li>
+    </ul>
+  </section>
+</main>
+
+</body></html>
