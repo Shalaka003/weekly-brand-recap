@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Brand Recap Prototype</title>
+<style>body { margin: 0; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one working column under a navy pill bar, like criticalmassgroup.com. Two steps: check the draft, then see it in the Brand Portal. Single light look to match CMG. */
+:root {
+  --bg: #F7F9F8;
+  --surface: #FDFEFE;
+  --tint: #EDF2F0;
+  --line: #D9E0DE;
+  --ink: #242325;
+  --head: #121214;
+  --soft: #45464B;
+  --muted: #5F6066;
+  --blue: #4FACFE;
+  --blue-ink: #1569B8;
+  --blue-soft: #E3F1FF;
+  --navy: #173753;
+  --on-navy: #F7F9F8;
+  --on-navy-soft: #C9D6E2;
+  --warn: #A64708;
+  --warn-soft: #FDEBDD;
+  --ok: #1D6B47;
+  --ok-soft: #E1F2E8;
+  --font-head: "Helvetica Neue", Helvetica, Arimo, Arial, sans-serif;
+  --font-body: Montserrat, Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 40px; display: flex; flex-direction: column; gap: 20px; }
+h1, h2, h3 { font-family: var(--font-head); color: var(--head); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(26px, 4vw, 34px); font-weight: 700; letter-spacing: -1px; line-height: 1.1; }
+h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.4px; }
+h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.2px; }
+p { margin: 0; }
+.sub { color: var(--soft); max-width: 64ch; margin-top: 6px; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+
+/* Top bar */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; background: var(--navy); border-radius: 20px; padding: 10px 10px 10px 20px; }
+.brand { display: flex; align-items: baseline; gap: 10px; color: var(--on-navy); }
+.brand b { font-family: var(--font-head); font-size: 17px; letter-spacing: -0.3px; }
+.brand span { font-size: 13px; color: var(--on-navy-soft); }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.25); align-self: center; }
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.tab { background: transparent; color: var(--on-navy); border: 0; border-radius: 40px; padding: 8px 14px; font-family: var(--font-head); font-weight: 700; font-size: 14px; }
+.tab[aria-selected="true"] { background: var(--on-navy); color: var(--navy); }
+.tab:focus-visible { outline-color: var(--blue); }
+.ctx { font-size: 14px; color: var(--muted); }
+.ctx b { color: var(--ink); }
+
+/* Panels */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px; min-width: 0; }
+.grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 16px; align-items: start; margin-top: 16px; }
+.head-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-weight: 700; font-size: 13px; color: var(--muted); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 10px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+.row-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.btn { border: 0; border-radius: 40px; padding: 10px 18px; font-family: var(--font-head); font-weight: 700; font-size: 15px; background: var(--blue); color: var(--navy); }
+.btn:disabled { background: var(--tint); color: var(--muted); cursor: not-allowed; }
+.btn.ghost { background: var(--surface); color: var(--navy); border: 1px solid var(--line); }
+.btn.small { padding: 6px 12px; font-size: 13px; }
+.note { font-size: 13px; color: var(--muted); }
+
+/* Recap card */
+.recap { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; min-width: 0; }
+.rbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; background: var(--navy); color: var(--on-navy); padding: 12px 18px; font-size: 14px; font-weight: 600; }
+.rbar .pill { background: var(--on-navy); color: var(--navy); border-radius: 40px; padding: 2px 12px; font-size: 13px; font-weight: 700; }
+.rbody { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.headline { font-family: var(--font-head); font-size: 22px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.35; color: var(--head); }
+.rsec { border-top: 1px solid var(--line); padding-top: 12px; }
+.rsec h3 { margin-bottom: 4px; }
+.rsec p { color: var(--soft); }
+.n { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--navy); background: var(--blue-soft); border-radius: 6px; padding: 0 5px; white-space: nowrap; }
+.n.flag { color: var(--warn); background: var(--warn-soft); text-decoration: underline wavy; text-underline-offset: 3px; }
+.n.fixed { color: var(--ok); background: var(--ok-soft); }
+.okbar { display: flex; align-items: center; gap: 10px; background: var(--blue-soft); color: var(--navy); font-weight: 600; font-size: 14px; padding: 12px 18px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.stat .big { font-family: var(--font-head); font-size: 30px; font-weight: 700; letter-spacing: -0.8px; color: var(--head); font-variant-numeric: tabular-nums; }
+.stat .lab { font-size: 13px; color: var(--soft); }
+
+/* Check */
+.meter { height: 10px; background: var(--tint); border-radius: 40px; overflow: hidden; margin-top: 10px; }
+.meter i { display: block; height: 100%; background: var(--blue); border-radius: 40px; transition: width 400ms ease; }
+.flagcard { background: var(--warn-soft); border-radius: 14px; padding: 14px; margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+.flagcard .k { font-weight: 700; color: var(--warn); font-size: 13px; }
+.flagcard .btn { align-self: flex-start; }
+.flagcard.done { background: var(--ok-soft); }
+.flagcard.done .k { color: var(--ok); }
+.src { background: var(--surface); border-radius: 10px; padding: 4px 10px; }
+
+/* Portal */
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; background: var(--tint); border-radius: 40px; padding: 4px; }
+.seg button { border: 0; background: transparent; border-radius: 40px; padding: 7px 14px; font-weight: 600; font-size: 14px; color: var(--soft); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--navy); box-shadow: 0 1px 2px rgba(23, 55, 83, 0.15); }
+.empty { text-align: center; padding: 40px 18px; display: flex; flex-direction: column; gap: 8px; align-items: center; color: var(--soft); }
+.empty .ico { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--tint); color: var(--navy); font-weight: 700; }
+
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 14px; }
+
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) {
+  .stats { grid-template-columns: 1fr; }
+  .top { border-radius: 16px; padding: 10px 12px; }
+  .tabs { width: 100%; }
+  .tab { flex: 1 1 auto; padding: 8px 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .meter i { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="dot" aria-hidden="true"></span><b>Weekly Brand Recap</b><span>for CMG Central</span></div>
+    <nav class="tabs" role="tablist" aria-label="Workflow steps">
+      <button class="tab" role="tab" id="tab-draft" aria-controls="view-draft">1. Check draft</button>
+      <button class="tab" role="tab" id="tab-portal" aria-controls="view-portal">2. Brand Portal</button>
+    </nav>
+  </header>
+
+  <p class="ctx"><b>Sample Brand</b> · Week ending 15 Nov</p>
+
+  <section id="view-draft" role="tabpanel" aria-labelledby="tab-draft">
+    <h1>Check the draft before it goes out</h1>
+    <p class="sub">The AI assistant drafted Sample Brand’s recap from Sample Brand’s rows only. A separate check then matched every number to its source.</p>
+    <div class="grid">
+      <div class="recap" id="draft-card"></div>
+      <div class="panel" id="checks-panel"></div>
+    </div>
+  </section>
+
+  <section id="view-portal" role="tabpanel" aria-labelledby="tab-portal" hidden>
+    <div class="head-row">
+      <div>
+        <h1>What each brand sees</h1>
+        <p class="sub">In the CMG Brand Portal, each brand would see only its own approved recap.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Viewing as" id="viewer">
+        <button data-viewer="brand">Sample Brand</button>
+        <button data-viewer="other">Another brand</button>
+      </div>
+    </div>
+    <div style="margin-top:16px" id="portal"></div>
+  </section>
+
+  <footer class="foot">
+    <p class="note">Sample Brand, its files and every number here are sample data.</p>
+    <button class="btn ghost small" id="reset">Reset demo</button>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const fresh = () => ({ view: 'draft', fixed: false, approved: false, viewer: 'brand' });
+  let S = fresh();
+  const $ = (id) => document.getElementById(id);
+  const n = (v) => `<span class="n">${v}</span>`;
+  // The one wrong number: the draft says Whole Foods is up 18%; the source rows say 12%.
+  const wf = () => (S.fixed ? '<span class="n fixed" title="Fixed from source">12%</span>' : '<span class="n flag" title="Doesn’t match source">18%</span>');
+
+  function renderDraft() {
+    $('draft-card').innerHTML = `<div class="rbar"><span>Draft · Sample Brand · Week ending 15 Nov</span><span class="pill">${S.approved ? 'Approved' : 'Draft'}</span></div>
+      <div class="rbody">
+        <p class="headline">Sales up ${n('11%')} to ${n('$42,110')} across ${n('370')} stores, ${n('18')} of them new.</p>
+        <p>$ROS was ${n('$114')} per store, per week.</p>
+        <div class="rsec"><h3>Sprouts</h3><p>${n('$14,860')}, up ${n('14%')}. Selling in ${n('118')} stores.</p></div>
+        <div class="rsec"><h3>Whole Foods</h3><p>${n('$17,940')}, up ${wf()}. ${n('4')} stores sold nothing: possible out of stock. Field team told.</p></div>
+        <div class="rsec"><h3>Kroger</h3><p>${n('$9,310')}, up ${n('3%')}. Now in ${n('156')} stores, ${n('18')} of them new.</p></div>
+        <div class="rsec"><h3>Category</h3><p>Your category grew ${n('2%')} in SPINS this week.</p></div>
+      </div>`;
+    const m = S.fixed ? 16 : 15;
+    const flag = S.fixed
+      ? `<div class="flagcard done"><p class="k">Fixed from source</p><p>Whole Foods is up 12%: $17,940 this week vs $16,018 last week.</p></div>`
+      : `<div class="flagcard"><p class="k">1 number doesn’t match</p><p>Whole Foods: the draft says <b>up 18%</b>. The source says <b>up 12%</b>.</p>
+          <div class="src scroll"><table><thead><tr><th>Week ending</th><th>Net Sales</th></tr></thead><tbody><tr><td>8 Nov</td><td>$16,018</td></tr><tr><td>15 Nov</td><td>$17,940</td></tr></tbody></table></div>
+          <button class="btn small" id="btn-fix">Use 12% from the source</button></div>`;
+    $('checks-panel').innerHTML = `<h2>${m} of 16 numbers match their source</h2>
+      <div class="meter" role="img" aria-label="${m} of 16 numbers match"><i style="width:${Math.round((m / 16) * 100)}%"></i></div>
+      ${flag}
+      <div class="row-actions">
+        <button class="btn" id="btn-approve" ${S.fixed && !S.approved ? '' : 'disabled'}>${S.approved ? 'Approved and posted' : 'Approve and post to Brand Portal'}</button>
+        <p class="note">${S.approved ? 'Posted to the Brand Portal.' : S.fixed ? 'All numbers match.' : 'Fix the flagged number first.'}</p>
+      </div>`;
+  }
+
+  function renderPortal() {
+    document.querySelectorAll('#viewer button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.viewer === S.viewer)));
+    if (S.viewer === 'other') {
+      $('portal').innerHTML = `<div class="panel empty"><div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h2>No access</h2><p>This account belongs to a different brand. It can’t see Sample Brand’s recap or data.</p></div>`;
+    } else if (!S.approved) {
+      $('portal').innerHTML = `<div class="panel empty"><div class="ico">…</div><h2>This week’s recap isn’t ready yet</h2><p>It shows up here after CMG checks and approves it.</p><button class="btn small" data-go="draft">Go to step 1</button></div>`;
+    } else {
+      $('portal').innerHTML = `<div class="recap"><div class="rbar"><span>CMG Brand Portal · Sample Brand · Week ending 15 Nov</span><span class="pill">Sample data</span></div>
+        <div class="rbody">
+          <div class="stats">
+            <div class="stat"><p class="big">$42,110</p><p class="lab">Sales, up 11% on last week</p></div>
+            <div class="stat"><p class="big">370</p><p class="lab">Stores selling, 18 of them new</p></div>
+            <div class="stat"><p class="big">$114</p><p class="lab">$ROS: sales per store, per week</p></div>
+          </div>
+          <div class="rsec"><h3>Sprouts</h3><p>$14,860, up 14%. Selling in 118 stores.</p></div>
+          <div class="rsec"><h3>Whole Foods</h3><p>$17,940, up 12%. 4 stores sold nothing: possible out of stock. Field team told.</p></div>
+          <div class="rsec"><h3>Kroger</h3><p>$9,310, up 3%. Now in 156 stores, 18 of them new.</p></div>
+          <div class="rsec"><h3>Category</h3><p>Your category grew 2% in SPINS this week.</p></div>
+        </div>
+        <p class="okbar"><span aria-hidden="true">✓</span>Every number checked against its source · Approved by the brand’s CMG team</p></div>`;
+    }
+  }
+
+  function render() {
+    ['draft', 'portal'].forEach((v) => {
+      $('view-' + v).hidden = S.view !== v;
+      $('tab-' + v).setAttribute('aria-selected', String(S.view === v));
+      $('tab-' + v).tabIndex = S.view === v ? 0 : -1;
+    });
+    if (S.view === 'draft') renderDraft(); else renderPortal();
+  }
+  function go(v) { S.view = v; render(); window.scrollTo({ top: 0 }); }
+
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('button');
+    if (!t) return;
+    if (t.classList.contains('tab')) return go(t.id.replace('tab-', ''));
+    if (t.dataset.go) return go(t.dataset.go);
+    if (t.dataset.viewer) { S.viewer = t.dataset.viewer; return render(); }
+    if (t.id === 'btn-fix') { S.fixed = true; return render(); }
+    if (t.id === 'btn-approve') { S.approved = true; S.viewer = 'brand'; return go('portal'); }
+    if (t.id === 'reset') { S = fresh(); return render(); }
+  });
+
+  document.querySelector('.tabs').addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const next = S.view === 'draft' ? 'portal' : 'draft';
+    go(next); $('tab-' + next).focus();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
